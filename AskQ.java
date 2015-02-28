@@ -29,7 +29,8 @@ public class AskQ extends Layout {
 
     public AskQ() {
 
-        JFrame window = new AskQ();
+        Layout window = this;
+        Layout.layout = this;
         window.setSize(240, 427);
 
 
