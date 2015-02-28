@@ -31,7 +31,8 @@ public class GotIt extends Layout {
 
     public GotIt() {
 
-        JFrame window = this;//new GotIt( "KlikiT" );
+        final Layout window = this;//new GotIt( "KlikiT" );
+        Layout.layout = this;
         window.setSize( 240, 427 );
 
         line1.setAlignment(Label.CENTER);
@@ -48,7 +49,9 @@ public class GotIt extends Layout {
             public void actionPerformed(ActionEvent ev) {
                 //Layout.layout.dispatchEvent(new WindowEvent(Layout.layout, WindowEvent.WINDOW_CLOSING));
                 Layout.layout = new AskQ();
-                this.dispose();
+                Layout.layout.setVisible(true);
+                window.setVisible(false);
+                window.dispose();
             }
         });
 
