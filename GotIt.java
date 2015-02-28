@@ -48,6 +48,7 @@ public class GotIt extends Layout {
             public void actionPerformed(ActionEvent ev) {
                 //Layout.layout.dispatchEvent(new WindowEvent(Layout.layout, WindowEvent.WINDOW_CLOSING));
                 Layout.layout = new AskQ();
+                this.dispose();
             }
         });
 
