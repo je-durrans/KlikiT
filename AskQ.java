@@ -1,11 +1,14 @@
 /**
  * Created by Kate on 28-Feb-15.
  */
-import java.awt.TextField;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
 
@@ -24,13 +27,17 @@ public class AskQ extends JFrame {
     final JButton refresh_buttn = new JButton("REFRESH");
 
     public static void main(String[] args) {
-        AskQ lol = new AskQ();
+        try{ AskQ lol = new AskQ();} catch (IOException i) {}
     }
 
-    public AskQ() {
+    public AskQ() throws IOException{
 
         final JFrame window = this;
         window.setSize(240, 427);
+        BufferedImage bf = ImageIO.read(new File("back1.jpg"));
+
+// adding created component to the JFrame using my backImage class
+        this.setContentPane(new backImage(bf));
 
 
 
@@ -43,21 +50,25 @@ public class AskQ extends JFrame {
 
         back_buttn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                //go home
+                try{
+                new MyFrame();} catch (IOException i) {i.printStackTrace();}
+                window.setVisible(false);
+                window.dispose();
             }
         });
 
 
         refresh_buttn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                new AskQ();
+                try{
+                    new AskQ();} catch (IOException i) {i.printStackTrace();}
                 window.setVisible(false);
                 window.dispose();
             }
         });
 
         window.setLayout(null);
-        question.setBounds(10, 10, 380, 80);
+        question.setBounds(10, 10, 210, 200);
         window.add(question);
 
 
@@ -72,5 +83,17 @@ public class AskQ extends JFrame {
         window.setVisible(true);
         window.setLocationRelativeTo(null);
         window.setResizable(false);
+    }
+    class backImage extends JComponent {
+        Image i;
+        //Creating Constructer
+        public backImage(Image i) {
+            this.i = i;
+        }
+        //Overriding the paintComponent method
+        @Override
+        public void paintComponent(Graphics g) {
+            g.drawImage(i, 0, 0, null);  // Drawing image using drawImage method
+        }
     }
 }
