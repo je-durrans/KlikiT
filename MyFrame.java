@@ -24,7 +24,7 @@ class backImage extends JComponent {
     }
 }
 public class MyFrame extends JFrame {
-    public MyFrame()throws IOException {
+    /*public MyFrame()throws IOException {
         final JFrame window = this;
         window.setSize(240, 427);
         window.setLocationRelativeTo(null);
@@ -46,7 +46,34 @@ public class MyFrame extends JFrame {
         });
         b.setBounds(30, 300, 190, 27);
         this.add(b);
+    }*/
+
+    public MyFrame() throws IOException {
+
+        final JFrame window = this;
+        window.setSize(240, 427);
+        BufferedImage bf = ImageIO.read(new File("back1.jpg"));
+
+// adding created component to the JFrame using my backImage class
+        this.setContentPane(new backImage(bf));
+
+        JButton b = new JButton("ASK QUESTION");
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                try {new AskQ();} catch (IOException e) {e.printStackTrace();}
+                window.setVisible(false);
+                window.dispose();
+            }
+        });
+        b.setBounds(30, 300, 190, 27);
+        this.add(b);
+
+        window.setLayout(null);
+        window.setVisible(true);
+        window.setLocationRelativeTo(null);
+        window.setResizable(false);
     }
+
     public static void main(String[] args) throws IOException {
 
         MyFrame f = new MyFrame();
