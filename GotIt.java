@@ -1,12 +1,15 @@
 /**
  * Created by Kate on 28-Feb-15.
  */
-import java.awt.Label;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,28 +29,33 @@ public class GotIt extends JFrame {
     final JButton refresh_buttn = new JButton ( "REFRESH");
 
     public static void main(String[] args) {
-        GotIt lol = new GotIt();
+        try{GotIt lol = new GotIt();} catch (IOException e) {}
     }
 
-    public GotIt() {
+    public GotIt() throws IOException{
 
         final JFrame window = this;//new GotIt( "KlikiT" );
         window.setSize( 240, 427 );
 
+
         line1.setAlignment(Label.CENTER);
+        BufferedImage bf = ImageIO.read(new File("back1.jpg"));
+
+// adding created component to the JFrame using my backImage class
+        this.setContentPane(new backImage(bf));
 
 
         //adding the event listeners to buttons
         yes_buttn.addActionListener( new ActionListener() {
             public void actionPerformed( ActionEvent ev ) {
-                line1.setText("GR8!");
+                line1.setText("GREAT!");
             }
         } );
 
         no_buttn.addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                //Layout.layout.dispatchEvent(new WindowEvent(Layout.layout, WindowEvent.WINDOW_CLOSING));
-                new AskQ();
+                try{
+                    new AskQ();} catch (IOException i) {i.printStackTrace();}
                 window.setVisible(false);
                 window.dispose();
             }
@@ -55,17 +63,22 @@ public class GotIt extends JFrame {
 
         back_buttn.addActionListener( new ActionListener() {
             public void actionPerformed( ActionEvent ev ) {
+                try{new MyFrame();}catch (IOException e) {}
+                window.setVisible(false);
+                window.dispose();
             }
         } );
 
 
         refresh_buttn.addActionListener( new ActionListener() {
             public void actionPerformed( ActionEvent ev ) {
-
+                try {new GotIt();} catch (IOException e) {}
+                window.setVisible(false);
+                window.dispose();
             }
         } );
         window.setLayout(null);
-        line1.setBounds(10, 10, 200, 80); window.add(line1);
+        line1.setBounds(10, 10, 220, 80); window.add(line1);
 
         yes_buttn.setBounds(30, 215, 70, 40); window.add(yes_buttn);
         no_buttn.setBounds(140, 215, 70, 40); window.add(no_buttn);
@@ -73,8 +86,21 @@ public class GotIt extends JFrame {
         refresh_buttn.setBounds(140, 300, 90, 20); window.add(refresh_buttn);
 
 
+
         window.setVisible(true);
         window.setLocationRelativeTo(null);
         window.setResizable(false);
+    }
+    class backImage extends JComponent {
+        Image i;
+        //Creating Constructer
+        public backImage(Image i) {
+            this.i = i;
+        }
+        //Overriding the paintComponent method
+        @Override
+        public void paintComponent(Graphics g) {
+            g.drawImage(i, 0, 0, null);  // Drawing image using drawImage method
+        }
     }
 }
