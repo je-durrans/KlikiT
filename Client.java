@@ -7,8 +7,16 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
-    static String HOST  =  "127.0.0.1"; /* localhost */
+    static String HOST  = "127.0.0.1"; /* localhost */
     final static int    PORT  =  8888;
+
+    public static void main(String[] args) {
+        try {
+            Client c = new Client("127.0.0.1", "How are you finding this lecture?");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public Client(String host, String/*[]*/ text) throws IOException {
         HOST = host;
