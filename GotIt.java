@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
 
  */
-public class GotIt extends Layout {
+public class GotIt extends JFrame {
 
     public static String input = ""; //a string to hold the input
 
@@ -31,8 +31,7 @@ public class GotIt extends Layout {
 
     public GotIt() {
 
-        final Layout window = this;//new GotIt( "KlikiT" );
-        Layout.layout = this;
+        final JFrame window = this;//new GotIt( "KlikiT" );
         window.setSize( 240, 427 );
 
         line1.setAlignment(Label.CENTER);
@@ -48,8 +47,7 @@ public class GotIt extends Layout {
         no_buttn.addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 //Layout.layout.dispatchEvent(new WindowEvent(Layout.layout, WindowEvent.WINDOW_CLOSING));
-                Layout.layout = new AskQ();
-                Layout.layout.setVisible(true);
+                new AskQ();
                 window.setVisible(false);
                 window.dispose();
             }
