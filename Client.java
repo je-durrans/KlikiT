@@ -12,7 +12,7 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            Client c = new Client("127.0.0.1", "How are you finding this lecture?");
+            Client c = new Client("192.168.15.1", "How are you finding this lecture?");
         }catch(Exception e){
             e.printStackTrace();
         }
