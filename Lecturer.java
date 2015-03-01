@@ -26,7 +26,7 @@ public class Lecturer extends JFrame {
         line1.setAlignment(Label.CENTER);
         BufferedImage bf = ImageIO.read(new File("back1.jpg"));
 
-// adding created component to the JFrame using my backImage class
+// adding created component to the JFrame using my backImage clas
         this.setContentPane(new backImage(bf));
 
 
