@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 /**
 
  */
-public class AskQ extends Layout {
+public class AskQ extends JFrame {
 
 
     public static String input = ""; //a string to hold the input
@@ -29,8 +29,7 @@ public class AskQ extends Layout {
 
     public AskQ() {
 
-        Layout window = this;
-        Layout.layout = this;
+        final JFrame window = this;
         window.setSize(240, 427);
 
 
@@ -51,7 +50,9 @@ public class AskQ extends Layout {
 
         refresh_buttn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                Layout.layout = new AskQ();
+                new AskQ();
+                window.setVisible(false);
+                window.dispose();
             }
         });
 
