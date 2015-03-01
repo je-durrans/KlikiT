@@ -11,11 +11,14 @@ public class Client {
     final static int    PORT  =  8888;
 
     public static void main(String[] args) {
-        try {
-            Client c = new Client("192.168.15.1", "How are you finding this lecture?");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        new Thread(){
+            public void run(){
+                try {
+                    new Client("192.168.15.1", "How are you finding this lecture?");
+                }catch(Exception e){e.printStackTrace();}
+            }
+        }.start();
+        //System.out.println("Client done");
     }
 
     public Client(String host, String/*[]*/ text) throws IOException {
